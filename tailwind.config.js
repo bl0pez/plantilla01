@@ -24,7 +24,7 @@ module.exports = {
       green: { DEFAULT: "#539592", hover: "#40807d" },
       black: { DEFAULT: "#273029", heavy: "#1b211c" },
       grey: "#888888",
-      orage: {
+      orange: {
         DEFAULT: "#f2994a",
         hover: "#da863c",
       },

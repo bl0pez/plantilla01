@@ -1,3 +1,11 @@
+import Hero from "@/components/Hero";
+import StyleGuide from "@/components/StyleGuide";
+
 export default function Home() {
-  return <main className="">HomePage</main>;
+  return (
+    <main className="w-full max-w-[1440px] bg-white mx-auto overflow-hidden">
+      <Hero />
+      {/* <StyleGuide /> */}
+    </main>
+  );
 }
