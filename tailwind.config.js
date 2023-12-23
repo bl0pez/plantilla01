@@ -38,7 +38,7 @@ module.exports = {
       },
       backgroundImage: {
         hero: 'url("/hero/bg.png")',
-        menu: 'url("/manu/bg.png")',
+        menu: 'url("/menu/bg.png")',
         reservation: 'url("/reservation/bg.png")',
         footer: 'url("/footer/bg.png")',
       },
