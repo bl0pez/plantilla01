@@ -42,6 +42,7 @@ const StyleGuide = () => {
           <div>
             <Label>Select</Label>
             <InputSelect
+              label="Select a fruit"
               placeholder="Select a fruit"
               items={[
                 { value: "apple", label: "Apple" },

@@ -6,6 +6,7 @@ import ReservationForm from "./ReservationForm";
 const Reservation = () => {
   return (
     <motion.section
+      id="reservation"
       variants={fadeIn("up", 0.2)}
       initial="hidden"
       whileInView={"show"}

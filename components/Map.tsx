@@ -1,23 +1,51 @@
 "use client";
+import dynamic from "next/dynamic";
+import { useEffect } from "react";
 import Image from "next/image";
 import { useMediaQuery } from "react-responsive";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { Icon } from "leaflet";
 import { markers } from "@/utils/markers";
 
 import "leaflet/dist/leaflet.css";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/utils/variants";
 
-const customIcon = new Icon({
-  iconUrl: "/pin-solid.svg",
-  iconSize: [40, 40],
+const MapContainer = dynamic(
+  () => import("react-leaflet").then((mod) => mod.MapContainer),
+  { ssr: false }
+);
+
+const TileLayer = dynamic(
+  () => import("react-leaflet").then((mod) => mod.TileLayer),
+  { ssr: false }
+);
+
+const Marker = dynamic(
+  () => import("react-leaflet").then((mod) => mod.Marker),
+  {
+    ssr: false,
+  }
+);
+
+const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), {
+  ssr: false,
 });
 
-export const Map = () => {
+const Map = () => {
   const isMobile = useMediaQuery({
     query: "(max-width: 768px)",
   });
+
+  useEffect(() => {
+    if (window === undefined) return;
+
+    const L = require("leaflet");
+    const pin = L.icon({
+      iconUrl: "/pin-solid.svg",
+      iconSize: [40, 40],
+    });
+
+    L.Marker.prototype.options.icon = pin;
+  }, []);
 
   return (
     <motion.section
@@ -31,6 +59,7 @@ export const Map = () => {
       <MapContainer
         center={[-18.47058, -70.2918307]}
         zoom={14}
+        scrollWheelZoom={false}
         className={`${isMobile ? "h-[300px]" : "h-[900px]"} z-10`}
         zoomControl={false}
       >
@@ -39,7 +68,7 @@ export const Map = () => {
           url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
         />
         {markers.map((marker, i) => (
-          <Marker key={i} position={marker.position} icon={customIcon}>
+          <Marker key={i} position={marker.position}>
             <Popup>
               <div className="flex gap-x-[30px]">
                 <div className="flex-1">
@@ -62,3 +91,5 @@ export const Map = () => {
     </motion.section>
   );
 };
+
+export default Map;
