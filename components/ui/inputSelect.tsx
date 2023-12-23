@@ -16,9 +16,10 @@ interface Item {
 interface Props {
   placeholder: string;
   items: Item[];
+  label: string;
 }
 
-export const InputSelect = ({ items, placeholder }: Props) => {
+export const InputSelect = ({ items, placeholder, label }: Props) => {
   return (
     <Select>
       <SelectTrigger className="w-full">
@@ -26,7 +27,7 @@ export const InputSelect = ({ items, placeholder }: Props) => {
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectLabel>Fruits</SelectLabel>
+          <SelectLabel>{label}</SelectLabel>
           {items.map((item) => (
             <SelectItem key={item.value} value={item.value}>
               {item.label}

@@ -16,7 +16,7 @@ const buttonVariants = cva(
         green: "text-white bg-green hover:bg-green-hover",
       },
       size: {
-        default: "w-[170px] h-[62px] px-6",
+        default: "w-[170px] h-[40px] px-6",
         sm: "w-[150px] h-[58px] px-6",
       },
     },
